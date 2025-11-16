@@ -69,6 +69,52 @@ h2 { border-bottom: 1px solid color-mix(in srgb, var(--accent) 60%, transparent)
 .btn-success { background-color: #4ade80; color: #111111; border: 1px solid color-mix(in srgb, #4ade80 65%, #000 35%); }
 .btn-success:hover { filter: brightness(0.95); }
 
+/* Cards */
+.card { @apply border rounded-xl bg-white shadow-sm; }
+.dark .card { @apply bg-[#0f0f10] border-gray-800; }
+.card-header { @apply px-4 py-3 border-b text-sm font-medium text-gray-700; }
+.dark .card-header { @apply border-gray-800 text-gray-200; }
+.card-body { @apply p-4; }
+
+/* Editor surfaces (force light look even in dark mode) */
+.editor { background: #f8fafc; }
+.editor .section { @apply bg-white border rounded-xl shadow-sm; }
+.editor .section-header { @apply px-4 py-2 border-b text-[13px] font-semibold tracking-wide uppercase text-gray-600; }
+.editor .section-body { @apply p-4; }
+.dark .editor { background: #eef2f7; }
+.dark .editor .section { @apply bg-white border-gray-200; }
+.dark .editor .section-header { @apply border-gray-200 text-gray-700; }
+.dark .editor .section-body { @apply text-gray-800; }
+
+/* Make form controls light inside editor even in dark mode */
+.dark .editor input,
+.dark .editor textarea,
+.dark .editor select { background-color: #ffffff !important; color: #111827 !important; border-color: #d1d5db !important; }
+.editor input:focus,
+.editor textarea:focus,
+.editor select:focus { background-color: #fff !important; }
+
+/* Table polish */
+.table { @apply w-full text-sm; }
+.table thead th { @apply text-left uppercase tracking-wide text-[11px] text-gray-500; }
+.dark .table thead th { @apply text-gray-400; }
+.table thead { position: sticky; top: 0; z-index: 10; }
+.table thead { @apply bg-gray-50; }
+.dark .table thead { @apply bg-[#141414]; }
+.table tbody tr { @apply border-t; }
+.dark .table tbody tr { @apply border-gray-800; }
+.table tbody tr:hover { @apply bg-gray-50; }
+.dark .table tbody tr:hover { @apply bg-[#161616]; }
+
+/* Badges */
+.badge { @apply inline-flex items-center px-2 py-0.5 rounded text-xs border; }
+.badge-gray { @apply border-gray-300 text-gray-700 bg-gray-50; }
+.badge-amber { @apply border-amber-300 text-amber-700 bg-amber-50; }
+.badge-red { @apply border-red-300 text-red-700 bg-red-50; }
+.dark .badge-gray { @apply border-gray-700 text-gray-300 bg-[#1a1a1a]; }
+.dark .badge-amber { @apply border-amber-700 text-amber-300 bg-[#1a1200]; }
+.dark .badge-red { @apply border-red-700 text-red-300 bg-[#1a0f0f]; }
+
 * { scrollbar-width: thin; scrollbar-color: #525252 #2a2a2a; }
 *::-webkit-scrollbar { width: 8px; height: 8px; }
 *::-webkit-scrollbar-track { background: #2a2a2a; }
@@ -84,4 +130,3 @@ input[type="text"],input[type="email"],input[type="password"],input[type="number
 input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus,input[type="number"]:focus,input[type="date"]:focus,input[type="time"]:focus,input[type="datetime-local"]:focus,textarea:focus,select:focus {
   border-color: #3b82f6 !important; ring-color: #3b82f6 !important; background-color: #f9fafb !important;
 }
-

@@ -3,6 +3,7 @@ import WardRounds from './WardRounds'
 import PendientesManager from './PendientesManager'
 import SimpleCalendar from './SimpleCalendar'
 import AcademiaManager from './AcademiaManager'
+import Sidebar from './layout/Sidebar'
 
 type Tab = 'pase' | 'pendientes' | 'calendario' | 'academico'
 
@@ -16,26 +17,31 @@ export function App() {
     return () => { if (typeof document !== 'undefined') delete (document.body as any).dataset.section }
   }, [tab])
 
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
   return (
-    <div className="min-h-screen">
-      <header className="border-b sticky top-0 bg-white z-10">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <h1 className="text-xl font-semibold">HubJR v3 – Modulos Seleccionados</h1>
-          <nav className="flex gap-2">
-            <button className={`px-3 py-1 rounded border ${tab==='pase'?'bg-accent text-black':'btn-soft'}`} onClick={()=>setTab('pase')}>Pase de sala</button>
-            <button className={`px-3 py-1 rounded border ${tab==='pendientes'?'bg-accent text-black':'btn-soft'}`} onClick={()=>setTab('pendientes')}>Pendientes</button>
-            <button className={`px-3 py-1 rounded border ${tab==='calendario'?'bg-accent text-black':'btn-soft'}`} onClick={()=>setTab('calendario')}>Calendario</button>
-            <button className={`px-3 py-1 rounded border ${tab==='academico'?'bg-accent text-black':'btn-soft'}`} onClick={()=>setTab('academico')}>Academico</button>
-          </nav>
-        </div>
-      </header>
-      <main className="max-w-7xl mx-auto p-4">
-        {tab==='pase' && <WardRounds />}
-        {tab==='pendientes' && <PendientesManager />}
-        {tab==='calendario' && <SimpleCalendar />}
-        {tab==='academico' && <AcademiaManager />}
-      </main>
+    <div className="min-h-screen flex">
+      <Sidebar
+        sidebarOpen={sidebarOpen}
+        setSidebarOpen={setSidebarOpen}
+        activeTab={tab}
+        handleTabChange={(t)=>{ setTab(t as Tab); setSidebarOpen(false); }}
+      />
+      <div className="flex-1 min-w-0">
+        <header className="border-b sticky top-0 bg-white z-10">
+          <div className="px-4 py-3 flex items-center justify-between">
+            <button className="lg:hidden px-2 py-1 border rounded" onClick={()=> setSidebarOpen(true)}>Menu</button>
+            <h1 className="text-lg font-semibold">HubJR v3 – Modulos</h1>
+            <div />
+          </div>
+        </header>
+        <main className="p-4 max-w-7xl mx-auto">
+          {tab==='pase' && <WardRounds />}
+          {tab==='pendientes' && <PendientesManager />}
+          {tab==='calendario' && <SimpleCalendar />}
+          {tab==='academico' && <AcademiaManager />}
+        </main>
+      </div>
     </div>
   )
 }
-
