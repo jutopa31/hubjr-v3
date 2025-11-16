@@ -1,4 +1,5 @@
 import { supabase } from './supabase';
+import type { WardPatient } from '../types/ward';
 
 export type AdminPrivilegeType =
   | 'hospital_context_access'
@@ -26,25 +27,8 @@ export async function hasAdminPrivilege(
   }
 }
 
-type WardRoundPatient = {
-  id?: string;
-  cama: string;
-  dni: string;
-  nombre: string;
-  edad: string;
-  antecedentes: string;
-  motivo_consulta: string;
-  examen_fisico: string;
-  estudios: string;
-  severidad: string;
-  diagnostico: string;
-  plan: string;
-  pendientes: string;
-  fecha: string;
-}
-
 export async function archiveWardPatient(
-  wardPatient: WardRoundPatient,
+  wardPatient: WardPatient,
   hospitalContext: 'Posadas' | 'Julian' = 'Posadas'
 ): Promise<{ success: boolean; data?: any; error?: string; duplicate?: boolean }>{
   try {
@@ -97,4 +81,3 @@ export async function archiveWardPatient(
     return { success: false, error: e?.message || 'Unexpected error' };
   }
 }
-
