@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --bg-primary: #0b0b0b;
+  --bg-secondary: #151515;
+  --bg-tertiary: #1e1e1e;
+  --bg-hover: #262626;
+  --border-primary: #3a3a3a;
+  --border-secondary: #4c4c4c;
+  --text-primary: #ffffff;
+  --text-secondary: #c7c7c7;
+  --text-tertiary: #9b9b9b;
+
+  --accent-dashboard: #9ca3af;
+  --accent-patients: #7dd3fc;
+  --accent-resources: #93c5fd;
+  --accent-admin: #a5b4fc;
+
+  --accent: var(--accent-dashboard);
+  --on-accent: #111111;
+}
+
+body { margin: 0; min-width: 320px; min-height: 100vh; background-color: #ffffff; color: #111827; }
+.dark body { background-color: var(--bg-primary); color: var(--text-primary); }
+
+#root { width: 100%; min-height: 100vh; background-color: #ffffff; }
+.dark #root { background-color: var(--bg-primary); }
+
+html, body, #root { height: 100%; }
+.dark html, .dark body, .dark #root { background-color: var(--bg-primary); }
+
+body[data-section='dashboard'] { --accent: var(--accent-dashboard); }
+body[data-section='patients']  { --accent: var(--accent-patients); }
+body[data-section='resources'] { --accent: var(--accent-resources); }
+body[data-section='admin']     { --accent: var(--accent-admin); }
+
+h1, h2 { color: #111827; letter-spacing: 0.2px; }
+.dark h1, .dark h2 { color: var(--text-primary); }
+h1 { border-bottom: 2px solid color-mix(in srgb, var(--accent) 70%, transparent); padding-bottom: 0.35rem; }
+h2 { border-bottom: 1px solid color-mix(in srgb, var(--accent) 60%, transparent); padding-bottom: 0.25rem; }
+
+.banner { background: #f3f4f6; color: #111827; border: 1px solid #d1d5db; border-left: 4px solid var(--accent); }
+.dark .banner { background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-primary); border-left: 4px solid var(--accent); }
+
+.text-accent { color: var(--accent) !important; }
+.border-accent { border-color: var(--accent) !important; }
+.bg-accent { background-color: var(--accent) !important; color: var(--on-accent) !important; }
+.ring-accent { --tw-ring-color: var(--accent) !important; }
+
+.btn-accent { background-color: var(--accent); color: #111111; border: 1px solid color-mix(in srgb, var(--accent) 65%, #000 35%); }
+.btn-accent:hover { filter: brightness(0.95); }
+.dark .btn-accent { color: var(--on-accent); }
+
+.btn-soft { background-color: #f3f4f6; color: #4b5563; border: 1px solid #d1d5db; }
+.btn-soft:hover { background-color: #e5e7eb; color: #111827; }
+.dark .btn-soft { background-color: var(--bg-secondary); color: var(--text-secondary); border: 1px solid var(--border-primary); }
+.dark .btn-soft:hover { background-color: var(--bg-hover); color: var(--text-primary); }
+
+.btn-success { background-color: #4ade80; color: #111111; border: 1px solid color-mix(in srgb, #4ade80 65%, #000 35%); }
+.btn-success:hover { filter: brightness(0.95); }
+
+* { scrollbar-width: thin; scrollbar-color: #525252 #2a2a2a; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-track { background: #2a2a2a; }
+*::-webkit-scrollbar-thumb { background: #525252; border-radius: 4px; }
+*::-webkit-scrollbar-thumb:hover { background: #666666; }
+
+input[type="text"],input[type="email"],input[type="password"],input[type="number"],input[type="date"],input[type="time"],input[type="datetime-local"],input:not([type]),input[type="search"],textarea,select {
+  background-color: #ffffff !important; color: #111827 !important; border-color: #d1d5db !important;
+}
+.dark input[type="text"],.dark input[type="email"],.dark input[type="password"],.dark input[type="number"],.dark input[type="date"],.dark input[type="time"],.dark input[type="datetime-local"],.dark input:not([type]),.dark input[type="search"],.dark textarea,.dark select {
+  background-color: var(--bg-secondary) !important; color: var(--text-primary) !important; border-color: var(--border-primary) !important;
+}
+input[type="text"]:focus,input[type="email"]:focus,input[type="password"]:focus,input[type="number"]:focus,input[type="date"]:focus,input[type="time"]:focus,input[type="datetime-local"]:focus,textarea:focus,select:focus {
+  border-color: #3b82f6 !important; ring-color: #3b82f6 !important; background-color: #f9fafb !important;
+}
+
